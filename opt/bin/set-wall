@@ -1,3 +1,0 @@
-#!/bin/bash
-cp $1 /home/m1311/Pictures/Wallpapers/the-wall/wall
-feh --bg-fill ~/Pictures/Wallpapers/the-wall/wall
