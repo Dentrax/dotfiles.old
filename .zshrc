@@ -1,22 +1,24 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+#
 
-export ANDROID_HOME=/opt/android/Sdk/
+export PATH=/home/dentrax/anaconda3/bin:$PATH
+export ANDROID_HOME=~/android
 export GOPATH=~/Projects/go
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/opt/android/Sdk/platform-tools
+export PATH=$PATH:~/android/tools
+export PATH=$PATH:~/android/platform-tools
 export PATH=$PATH:/opt/bin
-XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CONFIG_HOME
-# Path to your oh-my-zsh installation.
-export ZSH=/home/m1311/.oh-my-zsh
+export PATH=$PATH:/usr/local/bin
+
+# Path to your oh-my-zsh installation.,
+export ZSH=/home/dentrax/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="geometry/geometry"
+ZSH_THEME="agnoster"
 
-GEOMETRY_SYMBOL_PROMPT=""
+#GEOMETRY_SYMBOL_PROMPT=""
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -70,9 +72,9 @@ GEOMETRY_SYMBOL_PROMPT=""
 plugins=(
   git
 )
-
-source $ZSH/oh-my-zsh.sh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/Projects/GitHub/geometry/geometry.zsh
+#source ~/Projects/GitHub/agnoster-zsh-theme/agnoster.zsh-theme
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
 
@@ -87,8 +89,6 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # else
 #   export EDITOR='mvim'
 # fi
-
-export EDITOR='emc -nw'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -105,25 +105,10 @@ export EDITOR='emc -nw'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-[[ $TMUX = "" ]] && export TERM="xterm-256color"
-
 alias quote="~/.config/conky/sidekick/res/quote-offline"
 alias quote-online="~/.config/conky/sidekick/res/quote-online"
 alias medleytext="sudo /opt/medleytext/medley-latest.AppImage"
 alias downmp3='f() { youtube-dl -o "~/Music/%(title)s.%(ext)s" --extract-audio --audio-format mp3 $1 };f'
-alias sub="subl3 ."
-alias vi="nvim"
-alias q="exit"
-alias tls="tmux ls"
-alias tkill="tmux kill-session -a"
-alias em="emc"
-alias e="emc -nw"
-alias wfon="nmcli r wifi on"
-alias wfoff="nmcli r wifi off"
-alias wfconn="nmtui-connect"
-alias add="sudo pacman -S"
-alias down-song='youtube-dl -o "~/Music/%(title)s.%(ext)s" --format m4a'
-
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-
+#alias sub = "subl3 ."
+alias amx_update="pacman -Syu"
+#neofetch
