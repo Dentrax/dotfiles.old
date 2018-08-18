@@ -25,9 +25,10 @@ compton -b --config ~/.config/compton.conf &
 conky -q -c ~/.config/conky/conky.conf &
 ##plank &
 docky &
-#polybar -q top &
-polybar -q bottom &
-notify-send -u low -a 'root' 'Welcome ~/, Dentrax!'
+polybar -q top &
+#polybar -q bottom &
+tint2 &
+notify-send -i /usr/share/icons/Papirus/32x32/status/avatar-default.svg -u critical -a 'root' 'Welcome ~/, Dentrax!'
 xset r rate 250 70
 
 

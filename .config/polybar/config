@@ -10,7 +10,7 @@ foreground = #ccffffff
 line-color = ${bar/bottom.background}
 line-size = 16
 
-spacing = 2
+spacing = 0
 padding-right = 5
 module-margin = 4
 
@@ -22,7 +22,7 @@ font-3 = FontAwesome:size=10;0
 ;modules-left = powermenu mpd
 ;modules-center = cpu memory
 
-modules-left = close minify maximize bspwm
+modules-left = close minify maximize cpu memory
 modules-center = ewmh
 modules-right = volume backlight battery date
 
@@ -30,15 +30,15 @@ modules-right = volume backlight battery date
 monitor = eDP-1
 bottom = true
 width = 100%
-height = 27
+height = 25
 
 background = ${bar/top.background}
 foreground = ${bar/top.foreground}
 
 line-color = ${bar/top.background}
-line-size = 2
+line-size = 1
 
-spacing = 3
+spacing = 2
 padding-right = 4
 module-margin-left = 0
 module-margin-right = 6
@@ -50,7 +50,7 @@ font-3 = NotoSans-Regular:size=8;-1
 font-4 = MaterialIcons:size=10;-1
 font-5 = Termsynu:size=8:antialias=false;0
 
-modules-left = bspwm
+modules-left = mpd
 modules-right = cpu memory wireless-network xkeyboard
 
 [module/xkeyboard]
@@ -60,7 +60,41 @@ format = <label-layout>
 
 label-layout =  %{F#fff}%layout% 
 
+[bar/song]
+monitor = eDP-1
+width = 145
+;height = 100
+offset-x = 325
+offset-y = 8
+radius = 0.0
+fixed-center = false
+bottom = true
 
+background = 0
+foreground = #494949
+
+line-size = 1
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 2
+padding-right = 2
+
+module-margin-left = 2
+module-margin-right = 2
+
+modules-left = 
+modules-center = song
+modules-right = 
+
+font-0 = "Bebas Neue Bold:style=Regular:size=11"
+
+tray-position = hidden
+tray-padding = 2
+
+override-redirect = true
 
 [module/backlight]
 type = internal/backlight
@@ -264,7 +298,13 @@ ramp-free-7 = █
 [module/mpd]
 type = internal/mpd
 
+
+host = 127.0.0.1
+port = 6600
+interval = 1
+
 format-online = <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
+format-offline = "MPD Offline"
 
 label-song = 𝄞 %artist% - %title%
 label-offline = 🎜 mpd is offline
@@ -291,6 +331,62 @@ bar-progress-fill-font = 3
 bar-progress-empty = ─
 bar-progress-empty-font = 3
 bar-progress-empty-foreground = #44
+
+[module/song]
+type = internal/mpd
+format-online = <label-song>
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 22
+label-song-ellipsis = true
+label-song = "%title%"
+
+[module/artist]
+type = internal/mpd
+format-online = <label-song>
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 25
+label-song-ellipsis = true
+label-song = "%artist%"
+
+[module/title]
+type = internal/mpd
+format-online = <label-song>  <label-time>
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 35
+label-song-ellipsis = true
+label-song = "%title%"
+label-time-foreground = #bb333f
+
+[module/album]
+type = internal/mpd
+format-online = <label-song>
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-ellipsis = true
+label-song = "%album%   (%date%)"
 
 [module/wireless-network]
 type = internal/network
@@ -412,7 +508,7 @@ label-empty-foreground = #55
 [module/close]
 type = custom/script
 exec = echo ""
-click-left = ~/.config/polybar/close.sh
+click-left = /usr/local/bin/amx_wmctrl close
 ;click-right = 
 click-middle = poweroff
 format-padding = 1
@@ -422,7 +518,7 @@ format-foreground = #c0392b
 [module/maximize]
 type = custom/script
 exec = echo ""
-click-left = ~/.config/polybar/maximize.sh
+click-left = /usr/local/bin/amx_wmctrl maximize
 ;click-right = 
 click-middle = reboot
 format-padding = 1
@@ -431,7 +527,7 @@ format-foreground = #27ae60
 [module/minify]
 type = custom/script
 exec = echo ""
-click-left =  ~/.config/polybar/minify.sh
+click-left = /usr/local/bin/amx_wmctrl minify
 ;click-right = 
 click-middle = betterlockscreen -s
 format-padding = 1
