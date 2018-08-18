@@ -15,6 +15,10 @@
 # If you want to use XFCE config tools...
 #
 #xfce-mcs-manager &
+
+killall dunst
+killall firefox
+killall chromium
  
 setxkbmap -layout "tr,us" -option "grp:alt_caps_toggle" &
 ##feh --randomize --bg-fill ~/Pictures/Wallpapers/* &
