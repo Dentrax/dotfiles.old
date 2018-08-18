@@ -15,11 +15,22 @@
 # If you want to use XFCE config tools...
 #
 #xfce-mcs-manager &
-
+ 
 setxkbmap -layout "tr,us" -option "grp:alt_caps_toggle" &
-feh --bg-fill ~/Pictures/Wallpapers/the-wall/wall &
+##feh --randomize --bg-fill ~/Pictures/Wallpapers/* &
+feh --bg-fill ~/Pictures/Wallpapers/fractured-wallpaper-1920x1080.jpg &
+
+#tint2 &
 compton -b --config ~/.config/compton.conf &
-#compton -b &
-#plank &
+conky -q -c ~/.config/conky/conky.conf &
+##plank &
 docky &
 polybar -q top &
+#polybar -q bottom &
+tint2 &
+notify-send -i /usr/share/icons/Papirus/32x32/status/avatar-default.svg -u critical -a 'root' 'Welcome ~/, Dentrax!'
+xset r rate 250 70
+
+
+
+
