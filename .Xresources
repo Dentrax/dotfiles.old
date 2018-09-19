@@ -1,0 +1,37 @@
+Xft.dpi: 210
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: true
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+
+
+*foreground:    #25232A
+*background:    #25232A
+
+!black
+*color0:    #332D35
+*color8:    #483F4A
+!red
+*color1:    #4D4163
+*color9:    #706482
+!green
+*color2:    #67548F
+*color10:   #9888B9
+!yellow
+*color3:    #7D6297
+*color11:   #AD9CC3
+!blue
+*color4:    #9671A0
+*color12:   #C6B4D0
+!magenta
+*color5:    #AD7FA8
+*color13:   #DDCADB
+!cyan
+*color6:    #C8AFBA
+*color14:   #EFE5EE
+!white
+*color7:    #E2DCCC
+*color15:   #E2DCCC
+
