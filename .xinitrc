@@ -40,4 +40,19 @@ fi
 #xterm -geometry 80x50+494+51 &
 #xterm -geometry 80x20+494-0 &
 #exec xterm -geometry 80x66+0+0 -name log
-exec openbox-session
+
+#exec i3
+
+# Mouse plugged ise openbox, değilse i3 başlat, touchpad kapat
+
+session=${1:-openbox}
+
+case $session in
+    i3|i3wm           		) exec i3;;
+    xfce|xfce4        		) exec startxfce4;;
+    openbox|openbox-session ) exec openbox-session;;
+    *                 ) exec $1;;
+esac
+
+#exec openbox-session
+
