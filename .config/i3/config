@@ -37,7 +37,7 @@ bindsym $win+Shift+t exec --no-startup-id termite /bin/bash
 # ===============================================================
 
 # Programs
-set $EXECUTE EXECUTE
+set $EXECUTE i3-EXECUTE
 mode "$EXECUTE" {
 	# Programs
 	bindsym e exec /usr/local/bin/amx_start emacs
@@ -56,7 +56,7 @@ bindsym $mod+e mode "$EXECUTE"
 # ===============================================================
 
 # Ranger
-set $RANGER RANGER
+set $RANGER i3-RANGER
 mode "$RANGER" {
 	# Rangers
 	bindsym p exec /usr/local/bin/amx_start ranger projects
@@ -251,7 +251,7 @@ bindsym $mod+Shift+Right move right
 # ===============================================================
 
 # Resize window (r)
-set $RESIZE WINDOW-RESIZE
+set $RESIZE i3-RESIZE
 
 mode "$RESIZE" {
   # (h)
@@ -285,7 +285,7 @@ bindcode $win+27 mode "$RESIZE"
 # WINDOW MOVE
 # ===============================================================
 
-set $MOVE WINDOW-MOVE
+set $MOVE i3-MOVE
 
 mode "$MOVE" {
   bindsym h move left
@@ -310,7 +310,7 @@ bindsym $win+m mode "$MOVE"
 # ===============================================================
 
 # Shutdown, Suspend, Lock (e)
-set $system System (l) lock, (e) logout, (s) suspend, (r) reboot, (h) shutdown
+set $system i3-SYSTEM
 mode "$system" {
   # (l)
   bindcode 46 exec i3exit lock, mode "default"
@@ -353,25 +353,25 @@ bindcode $mod+Shift+58 mode $workspaces_monitors
 # ===============================================================
 
 # Bar
-bar {
-  colors {
-    # Whole color settings
-    background $color_normal_gray
-    separator  $color_bright_gray
-    statusline $color_bright_white
-
-    # Type             border                 background              font
-    focused_workspace  $color_bright_gray     $color_bright_gray      $color_bright_white
-    active_workspace   $color_unused          $color_unused           $color_unused
-    inactive_workspace $color_normal_gray     $color_normal_gray      $color_normal_white
-    urgent_workspace   $color_bright_yellow   $color_bright_yellow    $color_normal_black
-  }
-
-  separator_symbol "  |  "
-  status_command py3status --dbus-notify
-  position top
-  tray_output none
-}
+#bar {
+#  colors {
+#    # Whole color settings
+#    background $color_normal_gray
+#    separator  $color_bright_gray
+#    statusline $color_bright_white
+#
+#    # Type             border                 background              font
+#    focused_workspace  $color_bright_gray     $color_bright_gray      $color_bright_white
+#    active_workspace   $color_unused          $color_unused           $color_unused
+#    inactive_workspace $color_normal_gray     $color_normal_gray      $color_normal_white
+#    urgent_workspace   $color_bright_yellow   $color_bright_yellow    $color_normal_black
+#  }
+#
+#  separator_symbol "  |  "
+#  status_command py3status --dbus-notify
+#  position top
+#  tray_output none
+#}
 
 # ===============================================================
 # GAPS
@@ -444,7 +444,7 @@ exec_always --no-startup-id "pgrep -x chromium && killall -q chromium"
 
 exec_always --no-startup-id "(pgrep -x dunst && killall -qw dunst) ; (dunst &)"
 exec_always --no-startup-id "(pgrep -x compton && killall -qw compton) ; compton -bc --config ~/.config/compton.conf &"
-exec_always --no-startup-id "(pgrep -x polybar && killall -qw polybar) ; (polybar -q bottom &)"
+exec_always --no-startup-id "(pgrep -x polybar && killall -qw polybar) ; (polybar -q top &) ; (polybar -q bottom &)"
 #exec_always --no-startup-id "(pgrep -x conky && killall -qw conky) ; (conky -q -c ~/.config/conky/conky.conf &)"
 exec_always --no-startup-id "(pgrep -x udiskie && killall -qw udiskie) ; (udiskie --smart-tray &)"
 exec_always --no-startup-id "(pgrep -x nm-applet && killall -qw nm-applet) ; (nm-applet &)"
