@@ -51,6 +51,10 @@ mode "$EXECUTE" {
 }
 bindsym $mod+e mode "$EXECUTE"
 
+# ===============================================================
+# MODE - RANGER
+# ===============================================================
+
 # Ranger
 set $RANGER RANGER
 mode "$RANGER" {
