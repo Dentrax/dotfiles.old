@@ -1,0 +1,434 @@
+# Set font
+font pango: Taskbar, Cantarell 9
+
+# Set default workspace layout
+workspace_layout tabbed
+
+# ===============================================================
+# MODIFIERS
+# ===============================================================
+
+# Use Alt as a modifier key
+set $mod Mod1
+
+# Use Windows as a Win key
+set $win Mod4
+
+# Define NumLock modifier
+set $numlock Mod2
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# ===============================================================
+# BINDCODE - EXEC SPESIFIC
+# ===============================================================
+
+# Refresh py3status module after switching keyboard layout (Shift+Shift)
+bindcode Shift+50 exec "py3-cmd refresh keyboard_layout"
+bindcode Shift+62 exec "py3-cmd refresh keyboard_layout"
+
+# Start a terminal
+bindsym $win+t exec --no-startup-id /usr/local/bin/amx_start termite
+bindsym $win+Shift+t exec --no-startup-id termite /bin/bash
+
+# Start a launcher
+bindsym $mod+Tab exec "pgrep -x rofi && killall rofi || /usr/local/bin/amx_start rofi window"
+bindsym $win+space exec "pgrep -x rofi && killall rofi || /usr/local/bin/amx_start rofi normal"
+
+# Lock and Suspend
+bindsym $win+l exec --no-startup-id betterlockscreen -l
+bindsym $win+$mod+l exec --no-startup-id betterlockscreen -s
+
+# Ranger
+bindsym $win+$mod+r exec "/usr/local/bin/amx_start ranger projects"
+
+# Programs
+bindsym $win+$mod+e exec /usr/local/bin/amx_start emacs
+bindsym $win+$mod+c exec /usr/local/bin/amx_start chromium
+bindsym $win+$mod+f exec /usr/local/bin/amx_start firefox
+bindsym $win+$mod+m exec /usr/local/bin/amx_start mailspring
+
+# Media keys
+bindsym XF86AudioMute         exec --no-startup-id /usr/local/bin/amx_set-volume toggle
+bindsym XF86AudioRaiseVolume  exec --no-startup-id /usr/local/bin/amx_set-volume up
+bindsym XF86AudioLowerVolume  exec --no-startup-id /usr/local/bin/amx_set-volume down
+bindsym XF86MonBrightnessUp   exec --no-startup-id /usr/local/bin/amx_set-light up
+bindsym XF86MonBrightnessDown exec --no-startup-id /usr/local/bin/amx_set-light down
+
+# ===============================================================
+# BINDCODE - i3 SPESIFIC
+# ===============================================================
+
+# Kill focused window
+bindsym $win+q kill
+
+# Split (v)
+bindsym $mod+Shift+v split h
+bindsym $mod+v split v
+
+# Enter fullscreen mode
+bindsym $mod+f fullscreen
+
+# Container layout: split
+bindsym $mod+Shift+s layout toggle split
+
+# Container layout: tabbed
+bindsym $mod+w layout tabbed
+
+# Container layout: stacking
+bindsym $mod+s layout stacking
+
+# Toggle sticky state
+bindsym $mod+s sticky toggle
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# Focus the parent container
+bindsym $mod+a focus parent
+
+# Focus the child container
+bindsym $mod+d focus child
+
+bindsym $win+Tab workspace next
+bindsym $win+Shift+Tab workspace prev
+
+# i3: Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# i3: Restart inplace
+bindsym $mod+Shift+r restart
+
+# i3: Exit (logs you out of your X session)
+bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# ===============================================================
+# WORKSPACE SETTINGS
+# ===============================================================
+
+# Workspaces
+focus_follows_mouse no
+
+#set workspace names
+set $workspace1 "" 
+set $workspace2 "☕" 
+set $workspace2 "⛧" 
+set $workspace3 "☥" 
+set $workspace4 "☯" 
+set $workspace5 "🎶" 
+set $workspace6 "⚛" 
+set $workspace7 "🐱"
+set $workspace8 "🌙"
+
+set $workspace1 workspace number 1
+set $workspace2 workspace number 2
+set $workspace3 workspace number 3
+set $workspace4 workspace number 4
+set $workspace5 workspace number 5
+set $workspace6 workspace number 6
+set $workspace7 workspace number 7
+set $workspace8 workspace number 8
+set $workspace9 workspace number 9
+set $workspace0 workspace number 10
+
+# Switch to workspace using keypad
+bindcode $numlock+$mod+87 $workspace1
+bindcode $numlock+$mod+88 $workspace2
+bindcode $numlock+$mod+89 $workspace3
+bindcode $numlock+$mod+83 $workspace4
+bindcode $numlock+$mod+84 $workspace5
+bindcode $numlock+$mod+85 $workspace6
+bindcode $numlock+$mod+79 $workspace7
+bindcode $numlock+$mod+80 $workspace8
+bindcode $numlock+$mod+81 $workspace9
+bindcode $numlock+$mod+90 $workspace0
+
+# Switch to workspace using number row
+bindsym $mod+1 $workspace1
+bindsym $mod+2 $workspace2
+bindsym $mod+3 $workspace3
+bindsym $mod+4 $workspace4
+bindsym $mod+5 $workspace5
+bindsym $mod+6 $workspace6
+bindsym $mod+7 $workspace7
+bindsym $mod+8 $workspace8
+bindsym $mod+9 $workspace9
+bindsym $mod+0 $workspace0
+
+# Move window to workspace using keypad
+bindcode $numlock+$mod+Shift+87 move container to $workspace1
+bindcode $numlock+$mod+Shift+88 move container to $workspace2
+bindcode $numlock+$mod+Shift+89 move container to $workspace3
+bindcode $numlock+$mod+Shift+83 move container to $workspace4
+bindcode $numlock+$mod+Shift+84 move container to $workspace5
+bindcode $numlock+$mod+Shift+85 move container to $workspace6
+bindcode $numlock+$mod+Shift+79 move container to $workspace7
+bindcode $numlock+$mod+Shift+80 move container to $workspace8
+bindcode $numlock+$mod+Shift+81 move container to $workspace9
+bindcode $numlock+$mod+Shift+90 move container to $workspace0
+
+# Move window to workspace using number row
+bindsym $mod+Shift+1 move container to $workspace1
+bindsym $mod+Shift+2 move container to $workspace2
+bindsym $mod+Shift+3 move container to $workspace3
+bindsym $mod+Shift+4 move container to $workspace4
+bindsym $mod+Shift+5 move container to $workspace5
+bindsym $mod+Shift+6 move container to $workspace6
+bindsym $mod+Shift+7 move container to $workspace7
+bindsym $mod+Shift+8 move container to $workspace8
+bindsym $mod+Shift+9 move container to $workspace9
+bindsym $mod+Shift+0 move container to $workspace0
+
+# Automatically rename workspaces
+exec_always i3-autoname-workspaces &
+
+# ===============================================================
+# WINDOW FOCUS
+# ===============================================================
+
+# Change focus (h)(j)(k)(l)
+bindcode $mod+43 focus left
+bindcode $mod+44 focus down
+bindcode $mod+45 focus up
+bindcode $mod+46 focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window (h)(j)(k)(l)
+bindcode $mod+Shift+43 move left
+bindcode $mod+Shift+44 move down
+bindcode $mod+Shift+45 move up
+bindcode $mod+Shift+46 move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# ===============================================================
+# WINDOW RESIZE
+# ===============================================================
+
+# Resize window (r)
+set $resize Resize window
+mode "$resize" {
+  # (h)
+  bindcode 43            resize grow   left  10 px or 10 ppt
+  bindcode Shift+43      resize shrink right 10 px or 10 ppt
+  bindcode Ctrl+43       resize grow   left  1  px or 1  ppt
+  bindcode Ctrl+Shift+43 resize shrink right 1  px or 1  ppt
+  # (j)
+  bindcode Shift+44      resize grow   down  10 px or 10 ppt
+  bindcode 44            resize shrink up    10 px or 10 ppt
+  bindcode Ctrl+Shift+44 resize grow   down  1  px or 1  ppt
+  bindcode Ctrl+44       resize shrink up    1  px or 1  ppt
+  # (k)
+  bindcode Shift+45      resize shrink down  10 px or 10 ppt
+  bindcode 45            resize grow   up    10 px or 10 ppt
+  bindcode Ctrl+Shift+45 resize shrink down  1  px or 1  ppt
+  bindcode Ctrl+45       resize grow   up    1  px or 1  ppt
+  # (l)
+  bindcode Shift+46      resize grow   right 10 px or 10 ppt
+  bindcode 46            resize shrink left  10 px or 10 ppt
+  bindcode Ctrl+Shift+46 resize grow   right 1  px or 1  ppt
+  bindcode Ctrl+46       resize shrink left  1  px or 1  ppt
+
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindcode $win+27 mode "$resize"
+
+# ===============================================================
+# WINDOW MOVE
+# ===============================================================
+
+mode "move" {
+  bindsym h move left
+  bindsym j move down
+  bindsym k move up
+  bindsym l move right
+
+  bindsym Shift+h move left 100 px
+  bindsym Shift+j move down 100 px
+  bindsym Shift+k move up 100 px
+  bindsym Shift+l move right 100 px
+
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+bindsym $win+m mode "move"
+
+# ===============================================================
+# SYSTEM
+# ===============================================================
+
+# Shutdown, Suspend, Lock (e)
+set $system System (l) lock, (e) logout, (s) suspend, (r) reboot, (h) shutdown
+mode "$system" {
+  # (l)
+  bindcode 46 exec i3exit lock, mode "default"
+  # (e)
+  bindcode 26 exec i3exit logout, mode "default"
+  # (s)
+  bindcode 39 exec i3exit suspend, mode "default"
+  # (r)
+  bindcode 27 exec i3exit reboot, mode "default"
+  # (h)
+  bindcode 43 exec i3exit shutdown, mode "default"
+
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindcode $win+Shift+26 mode "$system"
+
+# ===============================================================
+# WORKSPACE MONITOR
+# ===============================================================
+
+# Move workspaces between monitors (m)
+set $workspaces_monitors Move workspace between monitors
+mode "$workspaces_monitors" {
+  # (h)
+  bindcode 43 exec i3-msg move workspace to output left, mode "default"
+  # (l)
+  bindcode 46 exec i3-msg move workspace to output right, mode "default"
+
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+bindcode $mod+Shift+58 mode $workspaces_monitors
+
+# ===============================================================
+# BAR
+# ===============================================================
+
+# Bar
+bar {
+  colors {
+    # Whole color settings
+    background $color_normal_gray
+    separator  $color_bright_gray
+    statusline $color_bright_white
+
+    # Type             border                 background              font
+    focused_workspace  $color_bright_gray     $color_bright_gray      $color_bright_white
+    active_workspace   $color_unused          $color_unused           $color_unused
+    inactive_workspace $color_normal_gray     $color_normal_gray      $color_normal_white
+    urgent_workspace   $color_bright_yellow   $color_bright_yellow    $color_normal_black
+  }
+
+  separator_symbol "  |  "
+  status_command py3status --dbus-notify
+  position top
+  tray_output none
+}
+
+# ===============================================================
+# GAPS
+# ===============================================================
+
+# Gaps
+gaps inner 25
+gaps outer 30
+smart_gaps on
+
+# ===============================================================
+# BORDERS
+# ===============================================================
+
+# Borders
+new_window none
+new_window pixel 0
+new_float pixel 0
+hide_edge_borders both
+smart_borders on
+
+# ===============================================================
+# WINDOWS SPESIFIC
+# ===============================================================
+
+# Specific window configuration
+for_window	[class="^.*"]						border pixel 1
+for_window	[class=".*"]						sticky enable
+for_window	[title="^floatme$"]					floating enable
+for_window	[window_role="pop-up"]				floating enable
+for_window	[class="Pinentry"]					floating enable
+for_window	[class="copyq"]						floating enable
+for_window	[class="Peek"]						floating enable
+for_window	[class="Rofi"]						floating enable
+for_window	[class="Steam" instance="Steam"]	floating enable
+for_window	[class="Google-chrome"]				move container to $workspace2, title_format "Google Chrome"
+for_window	[class="Chromium"]					move container to $workspace2, title_format "Chromium"
+for_window	[class="Wire"]						move container to $workspace3
+for_window	[class="Slack"]						move container to $workspace3
+for_window	[class="Thunderbird"]				move container to $workspace4
+for_window	[class="TeamViewer"]				move container to $workspace9, floating enable, sticky disable
+for_window	[class="xfreerdp"]					move container to $workspace9
+
+# ===============================================================
+# COLORS
+# ===============================================================
+
+# Color scheme (Gruvbox dark)
+set $color_normal_white  #a89984
+set $color_bright_white  #ebdbb2
+set $color_normal_gray   #222222
+set $color_bright_gray   #3c3836
+set $color_bright_yellow #d79921
+set $color_normal_black  #282828
+set $color_unused        #ff0000
+
+# Colors                  border                 background             text                   indicator       child_border
+client.focused            $color_bright_gray     $color_bright_gray     $color_bright_white    $color_unused   $color_normal_white
+client.focused_inactive   $color_bright_gray     $color_bright_gray     $color_bright_white    $color_unused   $color_normal_black
+client.unfocused          $color_normal_gray     $color_normal_gray     $color_normal_white    $color_unused   $color_normal_black
+client.urgent             $color_bright_yellow   $color_bright_yellow   $color_normal_black    $color_unused   $color_unused
+client.placeholder        $color_unused          $color_normal_black    $color_unused          $color_unused   $color_unused
+
+# ===============================================================
+# AUTOSTART
+# ===============================================================
+
+exec_always --no-startup-id "pgrep -x firefox && killall -q firefox"
+exec_always --no-startup-id "pgrep -x chromium && killall -q chromium"
+
+exec_always --no-startup-id "pgrep -x dunst && killall -qw dunst && (dunst &)"
+exec_always --no-startup-id "pgrep -x compton && killall -qw compton; compton -bc --config ~/.config/compton.conf &"
+exec_always --no-startup-id "pgrep -x polybar && killall -qw polybar && (polybar -q top &)"
+exec_always --no-startup-id "pgrep -x conky && killall -qw conky && (conky -q -c ~/.config/conky/conky.conf &)"
+exec_always --no-startup-id "pgrep -x udiskie && killall -qw udiskie && (udiskie --smart-tray &)"
+exec_always --no-startup-id "pgrep -x nm-applet && killall -qw nm-applet && (nm-applet &)"
+
+#exec_always hsetroot -solid '#333333' &
+exec_always hsetroot -full ~/Pictures/Wallpapers/fractured-wallpaper-1920x1080.jpg
+exec_always numlockx &
+
+exec --no-startup-id setxkbmap -layout "tr,us" -option "grp:alt_caps_toggle" &
+
+#exec --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/fractured-wallpaper-1920x1080.jpg &
+#exec --no-startup-id xrandr --dpi 144
+#exec --no-startup-id /usr/bin/blueman-applet
+#exec --no-startup-id discord
+#exec --no-startup-id rocketchat-desktop
+#exec --no-startup-id messengerfordesktop
+#exec --no-startup-id slack
+
+exec --no-startup-id emacs --daemon
+exec --no-startup-id notify-send -i /usr/share/icons/Papirus/32x32/status/avatar-default.svg -u critical -a 'root'     'Welcome ~/, Dentrax!'
