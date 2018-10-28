@@ -149,27 +149,16 @@ bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # Workspaces
 focus_follows_mouse no
 
-#set workspace names
-set $workspace1 "" 
-set $workspace2 "☕" 
-set $workspace2 "⛧" 
-set $workspace3 "☥" 
-set $workspace4 "☯" 
-set $workspace5 "🎶" 
-set $workspace6 "⚛" 
-set $workspace7 "🐱"
-set $workspace8 "🌙"
-
-set $workspace1 workspace number 1
-set $workspace2 workspace number 2
-set $workspace3 workspace number 3
-set $workspace4 workspace number 4
-set $workspace5 workspace number 5
-set $workspace6 workspace number 6
-set $workspace7 workspace number 7
-set $workspace8 workspace number 8
-set $workspace9 workspace number 9
-set $workspace0 workspace number 10
+#set $workspace1 workspace number 1
+#set $workspace2 workspace number 2
+#set $workspace3 workspace number 3
+#set $workspace4 workspace number 4
+#set $workspace5 workspace number 5
+#set $workspace6 workspace number 6
+#set $workspace7 workspace number 7
+#set $workspace8 workspace number 8
+#set $workspace9 workspace number 9
+#set $workspace0 workspace number 10
 
 # Switch to workspace using keypad
 bindcode $numlock+$mod+87 $workspace1
@@ -184,43 +173,54 @@ bindcode $numlock+$mod+81 $workspace9
 bindcode $numlock+$mod+90 $workspace0
 
 # Switch to workspace using number row
-bindsym $mod+1 $workspace1
-bindsym $mod+2 $workspace2
-bindsym $mod+3 $workspace3
-bindsym $mod+4 $workspace4
-bindsym $mod+5 $workspace5
-bindsym $mod+6 $workspace6
-bindsym $mod+7 $workspace7
-bindsym $mod+8 $workspace8
-bindsym $mod+9 $workspace9
-bindsym $mod+0 $workspace0
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
 
 # Move window to workspace using keypad
-bindcode $numlock+$mod+Shift+87 move container to $workspace1
-bindcode $numlock+$mod+Shift+88 move container to $workspace2
-bindcode $numlock+$mod+Shift+89 move container to $workspace3
-bindcode $numlock+$mod+Shift+83 move container to $workspace4
-bindcode $numlock+$mod+Shift+84 move container to $workspace5
-bindcode $numlock+$mod+Shift+85 move container to $workspace6
-bindcode $numlock+$mod+Shift+79 move container to $workspace7
-bindcode $numlock+$mod+Shift+80 move container to $workspace8
-bindcode $numlock+$mod+Shift+81 move container to $workspace9
-bindcode $numlock+$mod+Shift+90 move container to $workspace0
+bindcode $numlock+$mod+Shift+87 move container to workspace $workspace1
+bindcode $numlock+$mod+Shift+88 move container to workspace $workspace2
+bindcode $numlock+$mod+Shift+89 move container to workspace $workspace3
+bindcode $numlock+$mod+Shift+83 move container to workspace $workspace4
+bindcode $numlock+$mod+Shift+84 move container to workspace $workspace5
+bindcode $numlock+$mod+Shift+85 move container to workspace $workspace6
+bindcode $numlock+$mod+Shift+79 move container to workspace $workspace7
+bindcode $numlock+$mod+Shift+80 move container to workspace $workspace8
+bindcode $numlock+$mod+Shift+81 move container to workspace $workspace9
+bindcode $numlock+$mod+Shift+90 move container to workspace $workspace0
 
 # Move window to workspace using number row
-bindsym $mod+Shift+1 move container to $workspace1
-bindsym $mod+Shift+2 move container to $workspace2
-bindsym $mod+Shift+3 move container to $workspace3
-bindsym $mod+Shift+4 move container to $workspace4
-bindsym $mod+Shift+5 move container to $workspace5
-bindsym $mod+Shift+6 move container to $workspace6
-bindsym $mod+Shift+7 move container to $workspace7
-bindsym $mod+Shift+8 move container to $workspace8
-bindsym $mod+Shift+9 move container to $workspace9
-bindsym $mod+Shift+0 move container to $workspace0
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace0
+
+#set workspace names
+set $workspace1 "" 
+set $workspace2 "☕" 
+set $workspace2 "⛧" 
+set $workspace3 "☥" 
+set $workspace4 "☯" 
+set $workspace5 "🎶" 
+set $workspace6 "⚛" 
+set $workspace7 "🐱"
+set $workspace8 "🌙"
 
 # Automatically rename workspaces
-exec_always i3-autoname-workspaces &
+# exec_always i3-autoname-workspaces &
 
 # ===============================================================
 # WINDOW FOCUS
