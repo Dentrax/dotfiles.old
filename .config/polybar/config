@@ -9,11 +9,11 @@ foreground = #ccffffff
 #foreground = #000000
 
 line-color = ${bar/bottom.background}
-line-size = 3
+line-size = 2
 
 spacing = 0
-padding-right = 5
-module-margin = 4
+padding-right = 1
+module-margin = 1
 
 font-0 = NotoSans-Regular:size=8;-1
 font-1 = MaterialIcons:size=10;0
@@ -30,7 +30,7 @@ modules-center = xwindow
 
 modules-left = close minify maximize
 ;modules-center = ewmh
-modules-right = volume backlight battery xkeyboard date
+modules-right = volume backlight sep xkeyboard sep date
 
 [bar/bottom]
 monitor = eDP-1
@@ -44,10 +44,10 @@ foreground = ${bar/top.foreground}
 line-color = ${bar/top.background}
 line-size = 1
 
-spacing = 2
-padding-right = 4
+spacing = 1
+padding-right = 1
 module-margin-left = 0
-module-margin-right = 6
+module-margin-right = 3
 
 font-0 = NotoSans-Regular:size=8;0
 font-1 = unifont:size=6;-3
@@ -58,7 +58,7 @@ font-5 = Termsynu:size=8:antialias=false;0
 
 modules-left = i3
 modules-center = i3mode
-modules-right = cpu memory wireless-network
+modules-right = cpu sep memory sep battery sep wireless-network
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -701,7 +701,7 @@ format-foreground = #f39c12
 
 [module/sep]
 type = custom/script
-exec = echo "/"
+exec = echo "|"
 
 [module/clock]
 type = internal/date
