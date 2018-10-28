@@ -32,6 +32,41 @@ bindcode Shift+62 exec "py3-cmd refresh keyboard_layout"
 bindsym $win+t exec --no-startup-id /usr/local/bin/amx_start termite
 bindsym $win+Shift+t exec --no-startup-id termite /bin/bash
 
+# ===============================================================
+# MODE - EXECUTE
+# ===============================================================
+
+# Programs
+set $EXECUTE EXECUTE
+mode "$EXECUTE" {
+	# Programs
+	bindsym e exec /usr/local/bin/amx_start emacs
+	bindsym c exec /usr/local/bin/amx_start chromium
+	bindsym f exec /usr/local/bin/amx_start firefox
+	bindsym m exec /usr/local/bin/amx_start mailspring
+
+  	# back to normal: Enter or Escape
+  	bindsym Return mode "default"
+  	bindsym Escape mode "default"
+}
+bindsym $mod+e mode "$EXECUTE"
+
+# Ranger
+set $RANGER RANGER
+mode "$RANGER" {
+	# Rangers
+	bindsym p exec /usr/local/bin/amx_start ranger projects
+	bindsym P exec /usr/local/bin/amx_start ranger pictures
+	bindsym d exec /usr/local/bin/amx_start ranger documents
+	bindsym D exec /usr/local/bin/amx_start ranger downloads
+	bindsym m exec /usr/local/bin/amx_start ranger music
+
+  	# back to normal: Enter or Escape
+  	bindsym Return mode "default"
+  	bindsym Escape mode "default"
+}
+bindsym $mod+r mode "$RANGER"
+
 # Start a launcher
 bindsym $mod+Tab exec "pgrep -x rofi && killall rofi || /usr/local/bin/amx_start rofi window"
 bindsym $win+space exec "pgrep -x rofi && killall rofi || /usr/local/bin/amx_start rofi normal"
@@ -39,15 +74,6 @@ bindsym $win+space exec "pgrep -x rofi && killall rofi || /usr/local/bin/amx_sta
 # Lock and Suspend
 bindsym $win+l exec --no-startup-id betterlockscreen -l
 bindsym $win+$mod+l exec --no-startup-id betterlockscreen -s
-
-# Ranger
-bindsym $win+$mod+r exec "/usr/local/bin/amx_start ranger projects"
-
-# Programs
-bindsym $win+$mod+e exec /usr/local/bin/amx_start emacs
-bindsym $win+$mod+c exec /usr/local/bin/amx_start chromium
-bindsym $win+$mod+f exec /usr/local/bin/amx_start firefox
-bindsym $win+$mod+m exec /usr/local/bin/amx_start mailspring
 
 # Media keys
 bindsym XF86AudioMute         exec --no-startup-id /usr/local/bin/amx_set-volume toggle
@@ -61,7 +87,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id /usr/local/bin/amx_set-light 
 # ===============================================================
 
 # Kill focused window
-bindsym $win+q kill
+bindsym $mod+q kill
 
 # Split (v)
 bindsym $mod+Shift+v split h
@@ -80,7 +106,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+s layout stacking
 
 # Toggle sticky state
-bindsym $mod+s sticky toggle
+bindsym $mod+t sticky toggle
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -221,8 +247,9 @@ bindsym $mod+Shift+Right move right
 # ===============================================================
 
 # Resize window (r)
-set $resize Resize window
-mode "$resize" {
+set $RESIZE WINDOW-RESIZE
+
+mode "$RESIZE" {
   # (h)
   bindcode 43            resize grow   left  10 px or 10 ppt
   bindcode Shift+43      resize shrink right 10 px or 10 ppt
@@ -248,13 +275,15 @@ mode "$resize" {
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
-bindcode $win+27 mode "$resize"
+bindcode $win+27 mode "$RESIZE"
 
 # ===============================================================
 # WINDOW MOVE
 # ===============================================================
 
-mode "move" {
+set $MOVE WINDOW-MOVE
+
+mode "$MOVE" {
   bindsym h move left
   bindsym j move down
   bindsym k move up
@@ -270,7 +299,7 @@ mode "move" {
   bindsym Escape mode "default"
 }
 
-bindsym $win+m mode "move"
+bindsym $win+m mode "$MOVE"
 
 # ===============================================================
 # SYSTEM
