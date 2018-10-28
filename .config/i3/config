@@ -40,6 +40,7 @@ bindsym $win+Shift+t exec --no-startup-id termite /bin/bash
 set $EXECUTE i3-EXECUTE
 mode "$EXECUTE" {
 	# Programs
+	bindsym t exec thunar /home/dentrax
 	bindsym e exec /usr/local/bin/amx_start emacs
 	bindsym c exec /usr/local/bin/amx_start chromium
 	bindsym f exec /usr/local/bin/amx_start firefox
@@ -59,8 +60,8 @@ bindsym $mod+e mode "$EXECUTE"
 set $RANGER i3-RANGER
 mode "$RANGER" {
 	# Rangers
-	bindsym p exec /usr/local/bin/amx_start ranger projects
-	bindsym P exec /usr/local/bin/amx_start ranger pictures
+	bindsym p exec --no-startup-id ranger ~/Projects
+	#bindsym P exec /usr/local/bin/amx_start ranger pictures
 	bindsym d exec /usr/local/bin/amx_start ranger documents
 	bindsym D exec /usr/local/bin/amx_start ranger downloads
 	bindsym m exec /usr/local/bin/amx_start ranger music
@@ -109,7 +110,7 @@ bindsym $mod+w layout tabbed
 # Container layout: stacking
 bindsym $mod+s layout stacking
 
-# Toggle sticky state
+# Toggle sticky states
 bindsym $mod+t sticky toggle
 
 # Make the currently focused window a scratchpad
@@ -123,7 +124,7 @@ bindsym $mod+Shift+space floating toggle
 
 # Change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
+	
 # Focus the parent container
 bindsym $mod+a focus parent
 
@@ -302,8 +303,24 @@ mode "$MOVE" {
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
-
 bindsym $win+m mode "$MOVE"
+
+# ===============================================================
+# WINDOW GOTO
+# ===============================================================
+
+set $GOTO i3-GOTO
+mode "$GOTO" {
+	bindsym t [class="Termite"] 	focus; mode "default"
+	bindsym f [class="Firefox"] 	focus; mode "default"
+	bindsym c [class="Chromium"] 	focus; mode "default"
+	bindsym e [class="Emacs"] 		focus; mode "default"
+	bindsym s [class="Subl3"] 		focus; mode "default"
+
+	bindsym Escape mode "default"
+	bindsym Return mode "default"
+}
+bindsym $win+g mode "$GOTO"
 
 # ===============================================================
 # SYSTEM
@@ -327,7 +344,7 @@ mode "$system" {
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
-bindcode $win+Shift+26 mode "$system"
+bindsym $mod+Shift+p mode "$system"
 
 # ===============================================================
 # WORKSPACE MONITOR
