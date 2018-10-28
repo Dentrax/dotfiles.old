@@ -442,12 +442,12 @@ client.placeholder        $color_unused          $color_normal_black    $color_u
 exec_always --no-startup-id "pgrep -x firefox && killall -q firefox"
 exec_always --no-startup-id "pgrep -x chromium && killall -q chromium"
 
-exec_always --no-startup-id "pgrep -x dunst && killall -qw dunst && (dunst &)"
-exec_always --no-startup-id "pgrep -x compton && killall -qw compton; compton -bc --config ~/.config/compton.conf &"
-exec_always --no-startup-id "pgrep -x polybar && killall -qw polybar && (polybar -q top &)"
-exec_always --no-startup-id "pgrep -x conky && killall -qw conky && (conky -q -c ~/.config/conky/conky.conf &)"
-exec_always --no-startup-id "pgrep -x udiskie && killall -qw udiskie && (udiskie --smart-tray &)"
-exec_always --no-startup-id "pgrep -x nm-applet && killall -qw nm-applet && (nm-applet &)"
+exec_always --no-startup-id "(pgrep -x dunst && killall -qw dunst) ; (dunst &)"
+exec_always --no-startup-id "(pgrep -x compton && killall -qw compton) ; compton -bc --config ~/.config/compton.conf &"
+exec_always --no-startup-id "(pgrep -x polybar && killall -qw polybar) ; (polybar -q bottom &)"
+#exec_always --no-startup-id "(pgrep -x conky && killall -qw conky) ; (conky -q -c ~/.config/conky/conky.conf &)"
+exec_always --no-startup-id "(pgrep -x udiskie && killall -qw udiskie) ; (udiskie --smart-tray &)"
+exec_always --no-startup-id "(pgrep -x nm-applet && killall -qw nm-applet) ; (nm-applet &)"
 
 #exec_always hsetroot -solid '#333333' &
 exec_always hsetroot -full ~/Pictures/Wallpapers/fractured-wallpaper-1920x1080.jpg
