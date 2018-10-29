@@ -53,6 +53,25 @@ mode "$EXECUTE" {
 bindsym $mod+e mode "$EXECUTE"
 
 # ===============================================================
+# MODE - SCREENSHOT
+# ===============================================================
+
+# Programs
+set $SCREENSHOT i3-SCREENSHOT
+mode "$SCREENSHOT" {
+	# Programs
+	bindsym --release f exec /usr/local/bin/amx_screenshot full, 	mode "default"
+	bindsym --release s exec /usr/local/bin/amx_screenshot select,	mode "default"
+	bindsym --release c exec /usr/local/bin/amx_screenshot focus,	mode "default"
+
+  	# back to normal: Enter or Escape
+  	bindsym Return mode "default"
+  	bindsym Escape mode "default"
+}
+bindsym $win+Print mode "$SCREENSHOT"
+
+
+# ===============================================================
 # MODE - RANGER
 # ===============================================================
 
@@ -61,7 +80,7 @@ set $RANGER i3-RANGER
 mode "$RANGER" {
 	# Rangers
 	bindsym p exec --no-startup-id ranger ~/Projects, 			mode "default"
-	#bindsym P exec /usr/local/bin/amx_start ranger pictures, 	mode "default"
+	bindsym P exec /usr/local/bin/amx_start ranger pictures, 	mode "default"
 	bindsym d exec /usr/local/bin/amx_start ranger documents,	mode "default"
 	bindsym D exec /usr/local/bin/amx_start ranger downloads,	mode "default"
 	bindsym m exec /usr/local/bin/amx_start ranger music,		mode "default"
@@ -71,6 +90,48 @@ mode "$RANGER" {
   	bindsym Escape mode "default"
 }
 bindsym $mod+r mode "$RANGER"
+
+# ===============================================================
+# MODE - WALLPAPER
+# ===============================================================
+
+# Wallpaper
+set $WALLPAPER i3-WALLPAPER
+mode "$WALLPAPER" {
+	# Wallpaper
+	bindsym 0 exec /usr/local/bin/amx_set-wallpaper random
+	bindsym 1 exec /usr/local/bin/amx_set-wallpaper select 1
+	bindsym 2 exec /usr/local/bin/amx_set-wallpaper select 2
+	bindsym 3 exec /usr/local/bin/amx_set-wallpaper select 3
+	bindsym 4 exec /usr/local/bin/amx_set-wallpaper select 4
+	bindsym 5 exec /usr/local/bin/amx_set-wallpaper select 5
+	bindsym 6 exec /usr/local/bin/amx_set-wallpaper select 6
+	bindsym 7 exec /usr/local/bin/amx_set-wallpaper select 7
+	bindsym 8 exec /usr/local/bin/amx_set-wallpaper select 8
+	bindsym 9 exec /usr/local/bin/amx_set-wallpaper select 9
+
+	bindsym d exec /usr/local/bin/amx_set-wallpaper default,	mode "default"
+
+	bindsym KP_0 exec /usr/local/bin/amx_set-wallpaper solid gray
+	bindsym KP_1 exec /usr/local/bin/amx_set-wallpaper solid red
+	bindsym KP_2 exec /usr/local/bin/amx_set-wallpaper solid green
+	bindsym KP_3 exec /usr/local/bin/amx_set-wallpaper solid blue
+	bindsym KP_4 exec /usr/local/bin/amx_set-wallpaper solid gray
+	bindsym KP_5 exec /usr/local/bin/amx_set-wallpaper solid gray
+	bindsym KP_6 exec /usr/local/bin/amx_set-wallpaper solid gray
+	bindsym KP_7 exec /usr/local/bin/amx_set-wallpaper solid gray
+	bindsym KP_8 exec /usr/local/bin/amx_set-wallpaper solid gray
+	bindsym KP_9 exec /usr/local/bin/amx_set-wallpaper solid gray
+	
+  	# back to normal: Enter or Escape
+  	bindsym Return mode "default"
+  	bindsym Escape mode "default"
+}
+bindsym $win+w mode "$WALLPAPER"
+
+# ===============================================================
+# BINDS
+# ===============================================================
 
 # Start a launcher
 bindsym $mod+Tab exec "pgrep -x rofi && killall rofi || /usr/local/bin/amx_start rofi window"
@@ -138,10 +199,11 @@ bindsym $win+Shift+Tab workspace prev
 bindsym $mod+Shift+c reload
 
 # i3: Restart inplace
-bindsym $mod+Shift+r restart
+#bindsym $mod+Shift+r restart
+bindsym $mod+Shift+r exec "i3-nagbar -t warning -m 'You pressed the RESTART shortcut. Do you really want to reload i3?' -b 'RESTART!' 'i3-msg restart'"
 
 # i3: Exit (logs you out of your X session)
-bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the EXIT shortcut. Do you really want to exit i3? This will end your X session.' -b 'EXIT!' 'i3-msg exit'"
 
 # ===============================================================
 # WORKSPACE SETTINGS
@@ -487,7 +549,7 @@ exec --no-startup-id notify-send -i /usr/share/icons/Papirus/32x32/status/avatar
 # X SETTINGS
 # ===============================================================
 
-/usr/bin/xset r rate 250 50 &
-/usr/bin/xset +fp /home/dentrax/.fonts
-/usr/bin/xset fp rehash
+exec /usr/bin/xset r rate 250 50 &
+exec /usr/bin/xset +fp /home/dentrax/.fonts
+exec /usr/bin/xset fp rehash
 
