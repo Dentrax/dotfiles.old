@@ -40,11 +40,11 @@ bindsym $win+Shift+t exec --no-startup-id termite /bin/bash
 set $EXECUTE i3-EXECUTE
 mode "$EXECUTE" {
 	# Programs
-	bindsym t exec thunar /home/dentrax
-	bindsym e exec /usr/local/bin/amx_start emacs
-	bindsym c exec /usr/local/bin/amx_start chromium
-	bindsym f exec /usr/local/bin/amx_start firefox
-	bindsym m exec /usr/local/bin/amx_start mailspring
+	bindsym t exec thunar /home/dentrax, 				mode "default"
+	bindsym e exec /usr/local/bin/amx_start emacs,		mode "default"
+	bindsym c exec /usr/local/bin/amx_start chromium,	mode "default"
+	bindsym f exec /usr/local/bin/amx_start firefox, 	mode "default"
+	bindsym m exec /usr/local/bin/amx_start mailspring, mode "default"
 
   	# back to normal: Enter or Escape
   	bindsym Return mode "default"
@@ -60,11 +60,11 @@ bindsym $mod+e mode "$EXECUTE"
 set $RANGER i3-RANGER
 mode "$RANGER" {
 	# Rangers
-	bindsym p exec --no-startup-id ranger ~/Projects
-	#bindsym P exec /usr/local/bin/amx_start ranger pictures
-	bindsym d exec /usr/local/bin/amx_start ranger documents
-	bindsym D exec /usr/local/bin/amx_start ranger downloads
-	bindsym m exec /usr/local/bin/amx_start ranger music
+	bindsym p exec --no-startup-id ranger ~/Projects, 			mode "default"
+	#bindsym P exec /usr/local/bin/amx_start ranger pictures, 	mode "default"
+	bindsym d exec /usr/local/bin/amx_start ranger documents,	mode "default"
+	bindsym D exec /usr/local/bin/amx_start ranger downloads,	mode "default"
+	bindsym m exec /usr/local/bin/amx_start ranger music,		mode "default"
 
   	# back to normal: Enter or Escape
   	bindsym Return mode "default"
@@ -289,10 +289,10 @@ bindcode $win+27 mode "$RESIZE"
 set $MOVE i3-MOVE
 
 mode "$MOVE" {
-  bindsym h move left
-  bindsym j move down
-  bindsym k move up
-  bindsym l move right
+  bindsym $mod+Left move left
+  bindsym $mod+Down move down
+  bindsym $mod+Up 	move up
+  bindsym $mod+Right move right
 
   bindsym Shift+h move left 100 px
   bindsym Shift+j move down 100 px
