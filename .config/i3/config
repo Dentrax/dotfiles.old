@@ -482,3 +482,12 @@ exec --no-startup-id setxkbmap -layout "tr,us" -option "grp:alt_caps_toggle" &
 
 exec --no-startup-id emacs --daemon
 exec --no-startup-id notify-send -i /usr/share/icons/Papirus/32x32/status/avatar-default.svg -u critical -a 'root'     'Welcome ~/, Dentrax!'
+
+# ===============================================================
+# X SETTINGS
+# ===============================================================
+
+/usr/bin/xset r rate 250 50 &
+/usr/bin/xset +fp /home/dentrax/.fonts
+/usr/bin/xset fp rehash
+
