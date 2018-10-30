@@ -110,7 +110,8 @@ mode "$WALLPAPER" {
 	bindsym 8 exec /usr/local/bin/amx_set-wallpaper select 8
 	bindsym 9 exec /usr/local/bin/amx_set-wallpaper select 9
 
-	bindsym d exec /usr/local/bin/amx_set-wallpaper default,	mode "default"
+	bindsym d exec /usr/local/bin/amx_set-wallpaper default,		mode "default"
+	bindsym b exec /usr/local/bin/amx_set-wallpaper solid black,	mode "default"
 
 	bindsym KP_0 exec /usr/local/bin/amx_set-wallpaper solid gray
 	bindsym KP_1 exec /usr/local/bin/amx_set-wallpaper solid red
@@ -525,16 +526,16 @@ exec_always --no-startup-id "(pgrep -x dunst && killall -qw dunst) ; (dunst &)"
 exec_always --no-startup-id "(pgrep -x compton && killall -qw compton) ; compton -bc --config ~/.config/compton.conf &"
 exec_always --no-startup-id "(pgrep -x polybar && killall -qw polybar) ; (polybar -q top &) ; (polybar -q bottom &)"
 #exec_always --no-startup-id "(pgrep -x conky && killall -qw conky) ; (conky -q -c ~/.config/conky/conky.conf &)"
-exec_always --no-startup-id "(pgrep -x udiskie && killall -qw udiskie) ; (udiskie --smart-tray &)"
-exec_always --no-startup-id "(pgrep -x nm-applet && killall -qw nm-applet) ; (nm-applet &)"
+#exec_always --no-startup-id "(pgrep -x udiskie && killall -qw udiskie) ; (udiskie --smart-tray &)"
+#exec_always --no-startup-id "(pgrep -x nm-applet && killall -qw nm-applet) ; (nm-applet &)"
 
 #exec_always hsetroot -solid '#333333' &
-exec_always hsetroot -full ~/Pictures/Wallpapers/fractured-wallpaper-1920x1080.jpg
+#exec_always hsetroot -fill ~/Pictures/Wallpapers/fractured-wallpaper-1920x1080.jpg
 exec_always numlockx &
 
 exec --no-startup-id setxkbmap -layout "tr,us" -option "grp:alt_caps_toggle" &
 
-#exec --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/fractured-wallpaper-1920x1080.jpg &
+exec --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/fractured-wallpaper-1920x1080.jpg &
 #exec --no-startup-id xrandr --dpi 144
 #exec --no-startup-id /usr/bin/blueman-applet
 #exec --no-startup-id discord
@@ -543,7 +544,7 @@ exec --no-startup-id setxkbmap -layout "tr,us" -option "grp:alt_caps_toggle" &
 #exec --no-startup-id slack
 
 exec --no-startup-id emacs --daemon
-exec --no-startup-id notify-send -i /usr/share/icons/Papirus/32x32/status/avatar-default.svg -u critical -a 'root'     'Welcome ~/, Dentrax!'
+exec --no-startup-id notify-send -i /usr/share/icons/Papirus/64x64/categories/dont-starve.svg -u critical -a 'root'     'Welcome ~/, Dentrax!'
 
 # ===============================================================
 # X SETTINGS
