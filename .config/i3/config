@@ -139,6 +139,7 @@ set $NETWORK i3-NETWORK
 mode "$NETWORK" {
 	# Network
 	bindsym w mode "$NETWORK_WIFI"
+	bindsym e mode "$NETWORK_ETHERHET"
 
   	# back to normal: Enter or Escape
   	bindsym Return mode "default"
@@ -163,7 +164,24 @@ mode "$NETWORK_WIFI" {
   	bindsym Return mode "default"
   	bindsym Escape mode "default"
 }
-bindsym $win+n mode "$NETWORK_WIFI"
+
+# ===============================================================
+# MODE - NETWORK-ETHERNET
+# ===============================================================
+
+# Network
+set $NETWORK_ETHERHET i3-NETWORK-ETHERNET
+mode "$NETWORK_ETHERHET" {
+	# Network
+	bindsym e exec /usr/local/bin/amx_ethernet on, 			mode "default"
+	bindsym d exec /usr/local/bin/amx_ethernet off, 		mode "default"
+	bindsym i exec /usr/local/bin/amx_ethernet connect,		mode "default"
+	bindsym o exec /usr/local/bin/amx_ethernet disconnect,	mode "default"
+
+  	# back to normal: Enter or Escape
+  	bindsym Return mode "default"
+  	bindsym Escape mode "default"
+}
 
 # ===============================================================
 # BINDS
