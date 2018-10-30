@@ -599,6 +599,8 @@ exec --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/fractured-wallpaper-192
 exec --no-startup-id emacs --daemon
 exec --no-startup-id notify-send -i /usr/share/icons/Papirus/64x64/categories/dont-starve.svg -u critical -a 'root'     'Welcome ~/, Dentrax!'
 
+exec /usr/local/bin/amx_set-touchpad auto
+
 # ===============================================================
 # X SETTINGS
 # ===============================================================
