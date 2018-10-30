@@ -131,6 +131,41 @@ mode "$WALLPAPER" {
 bindsym $win+w mode "$WALLPAPER"
 
 # ===============================================================
+# MODE - NETWORK
+# ===============================================================
+
+# Network
+set $NETWORK i3-NETWORK
+mode "$NETWORK" {
+	# Network
+	bindsym w mode "$NETWORK_WIFI"
+
+  	# back to normal: Enter or Escape
+  	bindsym Return mode "default"
+  	bindsym Escape mode "default"
+}
+bindsym $win+n mode "$NETWORK"
+
+# ===============================================================
+# MODE - NETWORK-WIFI
+# ===============================================================
+
+# Network
+set $NETWORK_WIFI i3-NETWORK-WIFI
+mode "$NETWORK_WIFI" {
+	# Network
+	bindsym e exec /usr/local/bin/amx_wifi on, 			mode "default"
+	bindsym d exec /usr/local/bin/amx_wifi off, 		mode "default"
+	bindsym i exec /usr/local/bin/amx_wifi connect,		mode "default"
+	bindsym o exec /usr/local/bin/amx_wifi disconnect,	mode "default"
+
+  	# back to normal: Enter or Escape
+  	bindsym Return mode "default"
+  	bindsym Escape mode "default"
+}
+bindsym $win+n mode "$NETWORK_WIFI"
+
+# ===============================================================
 # BINDS
 # ===============================================================
 
