@@ -4,8 +4,22 @@
 
 (load "~/.emacs.d/custom.rc/appearance.el")
 
+(load "~/.emacs.d/custom.rc/editor.el")
+
 (load "~/.emacs.d/custom.rc/magit.el")
+
 (load "~/.emacs.d/custom.rc/org-mode.el")
+(load "~/.emacs.d/custom.rc/org-bullets.el")
+
+(load "~/.emacs.d/custom.rc/yasnippet.el")
+
+;; (load "~/.emacs.d/custom.rc/platformio-mode.el")
+
+(load "~/.emacs.d/custom.rc/projectile-mode.el")
+(load "~/.emacs.d/custom.rc/treemacs-mode.el")
+
+(load "~/.emacs.d/custom.rc/youtube-dl.el")
+(load "~/.emacs.d/custom.rc/xwidget.el")
 
 (rc/require
  'go-mode
