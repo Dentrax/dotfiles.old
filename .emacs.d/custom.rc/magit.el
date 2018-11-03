@@ -1,4 +1,4 @@
-rc/require 'cl-lib)
+(rc/require 'cl-lib)
 (rc/require 'magit)
 
 (setq magit-auto-revert-mode nil)

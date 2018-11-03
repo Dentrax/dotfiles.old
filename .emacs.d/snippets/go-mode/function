@@ -1,8 +1,9 @@
 # -*- mode: snippet -*-
+# contributer: Furkan Türkal
 # name: func
 # key: func
+# description: func snippet
 # --
-// $1 ${4:...}
-func ${1:name}(${2:args}) $3 {
-  $0
+func ${1:name}(${2:arguments}) ${3:returntype} {
+	$0
 }
