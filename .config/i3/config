@@ -40,8 +40,9 @@ bindsym $win+Shift+t exec --no-startup-id termite /bin/bash
 set $EXECUTE i3-EXECUTE
 mode "$EXECUTE" {
 	# Programs
+	bindsym e mode "$EXECUTE_EDITOR"
+	bindsym i mode "$EXECUTE_IDE"
 	bindsym t exec thunar /home/dentrax, 				mode "default"
-	bindsym e exec /usr/local/bin/amx_start emacs,		mode "default"
 	bindsym c exec /usr/local/bin/amx_start chromium,	mode "default"
 	bindsym f exec /usr/local/bin/amx_start firefox, 	mode "default"
 	bindsym m exec /usr/local/bin/amx_start mailspring, mode "default"
@@ -50,7 +51,39 @@ mode "$EXECUTE" {
   	bindsym Return mode "default"
   	bindsym Escape mode "default"
 }
-bindsym $mod+e mode "$EXECUTE"
+bindsym $win+e mode "$EXECUTE"
+
+# ===============================================================
+# MODE - EXECUTE-EDITOR
+# ===============================================================
+
+# Programs
+set $EXECUTE_EDITOR i3-EXECUTE-EDITOR
+mode "$EXECUTE_EDITOR" {
+	# Programs
+	bindsym e exec /usr/local/bin/amx_start emacs,		mode "default"
+	bindsym a exec /usr/bin/atom,						mode "default"
+
+  	# back to normal: Enter or Escape
+  	bindsym Return mode "default"
+  	bindsym Escape mode "default"
+}
+
+# ===============================================================
+# MODE - EXECUTE-IDE
+# ===============================================================
+
+# Programs
+set $EXECUTE_IDE i3-EXECUTE-IDE
+mode "$EXECUTE_IDE" {
+	# Programs
+	bindsym a exec /usr/bin/arduino,	mode "default"
+	bindsym c exec /usr/bin/code,		mode "default"
+
+  	# back to normal: Enter or Escape
+  	bindsym Return mode "default"
+  	bindsym Escape mode "default"
+}
 
 # ===============================================================
 # MODE - SCREENSHOT
@@ -159,6 +192,7 @@ mode "$NETWORK_WIFI" {
 	bindsym d exec /usr/local/bin/amx_wifi off, 		mode "default"
 	bindsym i exec /usr/local/bin/amx_wifi connect,		mode "default"
 	bindsym o exec /usr/local/bin/amx_wifi disconnect,	mode "default"
+	bindsym s exec /usr/local/bin/amx_wifi show-ui,		mode "default"
 
   	# back to normal: Enter or Escape
   	bindsym Return mode "default"
@@ -343,25 +377,34 @@ set $workspace8 "🌙"
 # WINDOW FOCUS
 # ===============================================================
 
-# Change focus (h)(j)(k)(l)
-bindcode $mod+43 focus left
-bindcode $mod+44 focus down
-bindcode $mod+45 focus up
-bindcode $mod+46 focus right
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+set $FOCUS i3-FOCUS
 
-# Move focused window (h)(j)(k)(l)
-bindcode $mod+Shift+43 move left
-bindcode $mod+Shift+44 move down
-bindcode $mod+Shift+45 move up
-bindcode $mod+Shift+46 move right
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+mode "$FOCUS" {
+	# Change focus (h)(j)(k)(l)
+	bindcode $mod+43 focus left
+	bindcode $mod+44 focus down
+	bindcode $mod+45 focus up
+	bindcode $mod+46 focus right
+	bindsym $mod+Left focus left
+	bindsym $mod+Down focus down
+	bindsym $mod+Up focus up
+	bindsym $mod+Right focus right
+
+	# Move focused window (h)(j)(k)(l)
+	bindcode $mod+Shift+43 move left
+	bindcode $mod+Shift+44 move down
+	bindcode $mod+Shift+45 move up
+	bindcode $mod+Shift+46 move right
+	bindsym $mod+Shift+Left move left
+	bindsym $mod+Shift+Down move down
+	bindsym $mod+Shift+Up move up
+	bindsym $mod+Shift+Right move right
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+bindsym $win+f mode "$FOCUS"
 
 # ===============================================================
 # WINDOW RESIZE
@@ -578,17 +621,20 @@ exec_always --no-startup-id "pgrep -x chromium && killall -q chromium"
 exec_always --no-startup-id "(pgrep -x dunst && killall -qw dunst) ; (dunst &)"
 exec_always --no-startup-id "(pgrep -x compton && killall -qw compton) ; compton -bc --config ~/.config/compton.conf &"
 exec_always --no-startup-id "(pgrep -x polybar && killall -qw polybar) ; (polybar -q top &) ; (polybar -q bottom &)"
+
 #exec_always --no-startup-id "(pgrep -x conky && killall -qw conky) ; (conky -q -c ~/.config/conky/conky.conf &)"
 #exec_always --no-startup-id "(pgrep -x udiskie && killall -qw udiskie) ; (udiskie --smart-tray &)"
 #exec_always --no-startup-id "(pgrep -x nm-applet && killall -qw nm-applet) ; (nm-applet &)"
 
 #exec_always hsetroot -solid '#333333' &
 #exec_always hsetroot -fill ~/Pictures/Wallpapers/fractured-wallpaper-1920x1080.jpg
+
 exec_always numlockx &
 
 exec --no-startup-id setxkbmap -layout "tr,us" -option "grp:alt_caps_toggle" &
 
-exec --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/fractured-wallpaper-1920x1080.jpg &
+exec --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/default.jpg &
+
 #exec --no-startup-id xrandr --dpi 144
 #exec --no-startup-id /usr/bin/blueman-applet
 #exec --no-startup-id discord
@@ -596,7 +642,7 @@ exec --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/fractured-wallpaper-192
 #exec --no-startup-id messengerfordesktop
 #exec --no-startup-id slack
 
-exec --no-startup-id emacs --daemon
+exec --no-startup-id emacs --daemon	
 exec --no-startup-id notify-send -i /usr/share/icons/Papirus/64x64/categories/dont-starve.svg -u critical -a 'root'     'Welcome ~/, Dentrax!'
 
 exec /usr/local/bin/amx_set-touchpad auto
