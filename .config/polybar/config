@@ -1,7 +1,9 @@
 [bar/top]
 monitor = eDP-1
 width = 100%
-height = 25
+height = 20
+
+enable-ipc = true
 
 #background = #2d3436
 background = #000000
@@ -30,19 +32,21 @@ modules-center = xwindow
 
 modules-left = close minify maximize
 ;modules-center = ewmh
-modules-right = volume backlight sep xkeyboard sep date
+modules-right = volume backlight sep wireless-network sep wired-network sep battery sep xkeyboard sep date
 
 [bar/bottom]
 monitor = eDP-1
 bottom = true
 width = 100%
-height = 20
+height = 24
+
+enable-ipc = true
 
 background = ${bar/top.background}
 foreground = ${bar/top.foreground}
 
 line-color = ${bar/top.background}
-line-size = 1
+line-size = 0
 
 spacing = 1
 padding-right = 1
@@ -58,7 +62,26 @@ font-5 = Termsynu:size=8:antialias=false;0
 
 modules-left = i3
 modules-center = i3mode
-modules-right = cpu sep memory sep battery sep wireless-network
+modules-right = temperature sep cpu sep memory sep filesystem sep demo
+
+[module/demo]
+type = custom/ipc
+
+format = <output>
+format-foreground = #f00
+//format-background = #fff
+
+hook-0 = whoami
+hook-1 = uname -r
+hook-2 = lscpu | grep -i "CPU MHz" | awk '{print $3}'
+hook-3 = echo "Files in ${HOME}: $(ls -1a ~ | wc -l)"
+
+initial = 1
+
+click-left = polybar-msg -p %pid% hook demo 1
+click-right = polybar-msg -p %pid% hook demo 2
+double-click-left = polybar-msg -p %pid% hook demo 3
+double-click-right = polybar-msg -p %pid% hook demo 4
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -123,11 +146,11 @@ reverse-scroll = false
 
 fuzzy-match = true
 
-ws-icon-0 = 1;♚
-ws-icon-1 = 2;♛
-ws-icon-2 = 3;♜
-ws-icon-3 = 4;♝
-ws-icon-4 = 5;♞
+ws-icon-0 = 1;
+ws-icon-1 = 2;☕
+ws-icon-2 = 3;⛧
+ws-icon-3 = 4;☥
+ws-icon-4 = 5;🎶
 ws-icon-default = ♟
 ; NOTE: You cannot skip icons, e.g. to get a ws-icon-6
 ; you must also define a ws-icon-5.
@@ -335,7 +358,7 @@ label-empty-padding = 1
 
 [module/cpu]
 type = internal/cpu
-interval = 0.5
+interval = 2
 format = <label> <ramp-coreload>
 label = CPU
 
@@ -372,54 +395,33 @@ format-underline =  #456771
 
 [module/memory]
 type = internal/memory
-format = <label> <ramp-used>
-
+interval = 2
+format = <label> <bar-used>
 label = RAM %{F#ffffff}%percentage_used%%
 
-; Only applies if <bar-used> is used
-bar-used-indicator =
-bar-used-width = 50
-bar-used-foreground-0 = #55aa55
-bar-used-foreground-1 = #557755
-bar-used-foreground-2 = #f5a70a
+format-prefix = " "
+
+bar-used-width = 10
+bar-used-foreground-0 = #aaff77
+bar-used-foreground-1 = #aaff77
+bar-used-foreground-2 = #fba922
 bar-used-foreground-3 = #ff5555
-bar-used-fill = ▐
-bar-used-empty = ▐
+bar-used-indicator = |
+bar-used-indicator-font = 6
+bar-used-indicator-foreground = #ff
+bar-used-fill = ─
+bar-used-fill-font = 6
+bar-used-empty = ─
+bar-used-empty-font = 6
 bar-used-empty-foreground = #444444
-
-; Only applies if <ramp-used> is used
-ramp-used-0 = ▁
-ramp-used-1 = ▂
-ramp-used-2 = ▃
-ramp-used-3 = ▄
-ramp-used-4 = ▅
-ramp-used-5 = ▆
-ramp-used-6 = ▇
-ramp-used-7 = █
-
-; Only applies if <ramp-free> is used
-ramp-free-0 = ▁
-ramp-free-1 = ▂
-ramp-free-2 = ▃
-ramp-free-3 = ▄
-ramp-free-4 = ▅
-ramp-free-5 = ▆
-ramp-free-6 = ▇
-ramp-free-7 = █
 
 [module/mpd]
 type = internal/mpd
-
-
-host = 127.0.0.1
-port = 6600
-interval = 1
-
-format-online = <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
-format-offline = "MPD Offline"
-
-label-song = 𝄞 %artist% - %title%
-label-offline = 🎜 mpd is offline
+format-online = <bar-progress>  <icon-prev> <icon-stop> <toggle> <icon-next>  <label-song>
+format-online-overline = ${root.background}
+format-online-underline = ${root.background}
+format-offline = <label-offline>
+label-offline = mpd is off
 
 icon-play = 
 icon-pause = 
@@ -433,14 +435,17 @@ toggle-on-foreground =
 toggle-off-foreground = #55
 
 bar-progress-width = 45
-bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
-bar-progress-indicator = |
+bar-progress-format = %{+o +u}%fill%%{-o -u}%indicator%%{+o +u}%empty%%{-u -o}
+; bar-progress-indicator = |
+bar-progress-indicator = █
 bar-progress-indicator-foreground = #ff
 bar-progress-indicator-font = 3
-bar-progress-fill = ─
+; bar-progress-fill = ─
+bar-progress-fill = █
 bar-progress-fill-foreground = #bb
 bar-progress-fill-font = 3
-bar-progress-empty = ─
+; bar-progress-empty = ─
+bar-progress-empty = ▒
 bar-progress-empty-font = 3
 bar-progress-empty-foreground = #44
 
@@ -503,25 +508,24 @@ label-song = "%album%   (%date%)"
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-interval = 1
+interval = 2
 warn-temperature = 60
 
-format = <ramp> <label>
-;format-underline =  #456771
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input
+
+format = <ramp> <label> 
 format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
 
 label = %temperature%
 label-warn = %temperature%
-label-warn-foreground = ${colors.secondary}
+label-warn-foreground = #748aa6
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
 
-format-prefix = " "
-format-prefix-foreground = #666
+ramp-foreground = #ccc
+
 
 [module/filesystem]
 type = internal/fs
@@ -531,18 +535,18 @@ mount-0 = /
 
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
+label-unmounted-foreground = #ccc
 
 [module/wireless-network]
 type = internal/network
 interface = wlp3s0
-interval = 1.0
+interval = 2.0
 ping-interval = 10
 
 format-underline =  #456771
 format-connected = <ramp-signal> <label-connected>
 label-connected = %essid% [%local_ip%] %downspeed:9% %upspeed%
-label-disconnected =    not connected
+label-disconnected =  
 label-disconnected-foreground = #66
 
 ramp-signal-0 = 
@@ -551,7 +555,7 @@ ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
 
-animation-packetloss-0 = 
+animation-packetloss-0 = 	
 animation-packetloss-0-foreground = #ffa64c
 animation-packetloss-1 = 
 animation-packetloss-1-foreground = ${bar/top.foreground}
@@ -559,7 +563,7 @@ animation-packetloss-framerate = 500
 
 [module/wired-network]
 type = internal/network
-interface = wlp3s0
+interface = enp4s0
 interval = 3.0
 
 label-connected =    %{T3}%local_ip%%{T-}
@@ -567,6 +571,8 @@ label-disconnected-foreground = #66
 
 [module/volume]
 type = internal/alsa
+
+master-soundcard=hw:1
 
 format-volume = <ramp-volume> <label-volume>
 label-muted =   muted
@@ -709,3 +715,23 @@ interval = 2
 date = %%{F#999}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
 
 ; vim:ft=dosini
+
+[module/updates]
+type = custom/script
+interval = 60
+format = <label>
+format-underline = #FF410D
+label = "%output:0:30%"
+exec = .config/polybar/custom/updates.sh
+exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
+
+[module/redshift]
+type = custom/script
+interval = 5
+
+exec = ~/.config/polybar/custom/redshift.sh
+
+[module/bumblebee]
+type = custom/script
+interval = 4
+exec = ~/.config/polybar/custom/bumblebee.sh
